@@ -100,63 +100,49 @@
       </div>
     </section>
 
-    <section class="search">
-      <input type="search" name="search" id="task-input" placeholder="Create the task">
+    <section class="task">
+      <form class="new-task">
+        <input type="text" name="text" id="task-input" placeholder="Type to add new tasks" />
+      </form>
     </section>
 
     <section class='task-manager'>
       <ul class="surveys list">
-        <li class="survey-item">
-          <input type="checkbox" class="survey-checkbox">
-
-          <span class="survey-name">
-            Creating enrollment for team members
-          </span>
-
-          <div class="pull-right">
-            <span class="survey-progress">
-              <span class="survey-progress-labels">
-                <span class="survey-progress-label">
-                  Working
-                </span>
-
-                <span class="survey-completes">
-                  2 / 12
-                </span>
-              </span>
-            </span>
-
-             <span class="survey-end-date ended">
-              2014 - May 10
-            </span>
-          </div>
-        </li>
-
-        <li class="survey-item">
-          <input type="checkbox" name="vehicle" value="Bike" class='survey-checkbox'>
-
-          <span class="survey-name">
-            Refactor payment prices
-          </span>
-
-          <div class="pull-right">
-            <span class="survey-progress">
-              <span class="survey-progress-labels">
-
-                <span class="survey-completes">
-                  0 / 20
-                </span>
-              </span>
-            </span>
-
-             <span class="survey-end-date ended">
-              2014 - May 10
-            </span>
-          </div>
-        </li>
+        {{#each tasks}}
+          {{> task}}
+        {{/each}}
       </ul>
     </section>
   </main>
 </div>
 </body>
 
+<template name="task">
+  <li class="survey-item {{#if checked}}checked{{/if}}">
+    <input type="checkbox" class="survey-checkbox">
+
+    <span class="survey-name">
+      {{title}}
+    </span>
+
+    <div class="pull-right">
+      <span class="survey-progress">
+        <span class="survey-progress-labels">
+          <span class="survey-progress-label">
+            Pending
+          </span>
+
+          <span class="survey-completes">
+            0 / 0
+          </span>
+        </span>
+      </span>
+
+       <span class="survey-end-date ended">
+        {{createdAt}}
+      </span>
+
+      <button class="delete">&times;</button>
+    </div>
+  </li>
+</template>

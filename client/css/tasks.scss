@@ -311,3 +311,22 @@ body {
 .survey-checkbox {
   margin-left: 15px;
 }
+
+li.checked {
+  color: #888;
+}
+
+li.checked .text {
+  text-decoration: line-through;
+}
+
+.delete {
+  color: $secondary-text-color;
+  float: left;
+  font-weight: bold;
+  background: none;
+  font-size: 2em;
+  border: none;
+  position: relative;
+  margin-right: 5px;
+}
