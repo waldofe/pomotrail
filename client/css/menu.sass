@@ -83,7 +83,7 @@ body
     float: left
 
     .address
-      height: 400px
+      height: 350px
       background: #fff
       @extend %section
       text-align: center
@@ -286,7 +286,7 @@ body
     .task-manager
       width: 850px
       height: 120px
-      margin: 20px 0 0 50px
+      margin: 5px 0 0 50px
       float: left
 
     .info-box
@@ -343,7 +343,7 @@ body
         margin: 0 0 5px 0
 
       .controls
-
+        margin-top: 30px;
         button
           width: 30px
           height: 30px
@@ -375,11 +375,11 @@ body
           color: #fff
           border-radius: 2px
           background: $red
-          font-size: 13px
+          font-size: 16px
           padding: 3px 5px
           position: relative
-          bottom: 2px
-          left: -192px
+          bottom: 5px
+          left: -635px
           display: inline-block
 
           &:after
@@ -394,8 +394,8 @@ body
             left: 13px
 
         .progress
-          width: 560px
-          height: 4px
+          width: 600px
+          height: 6px
           border-radius: 2px
           background: #cbcbcb
           float: left
@@ -405,19 +405,17 @@ body
           &:after
             content: ""
             display: block
-            width: 50%
-            height: 4px
+            width: 2%
+            height: 7px
             background: $red
             border-radius: 2px
 
     .search
-      width: 220px
-      height: 80px
+      width: 850px
+      height: 50px
       @extend %section
       display: inline-block
-      margin: 50px 0 0 50px
-      text-align: center
-      padding: 20px
+      margin: 30px 0 0 50px
 
       form
         height: 80px
@@ -441,8 +439,7 @@ body
         line-height: 30px
         padding: 0 20px
         float: right
-        margin-top: 20px
-        margin-right: -1px
+        margin-right: 5px
 
       label
         font-size: 11px
@@ -453,19 +450,19 @@ body
         top: 21px
         float: left
 
-        span
+      span
+        display: inline-block
+        width: 17px
+        height: 17px
+        background: #ebebeb
+        border: 1px solid #cfcfcf
+        position: relative
+        top: 5px
+        right: 6px
+      span.checked
+        background: #ebebeb url(//  i1284.photobucket.com/albums/a574/meecrobe/check_zpsf8f08915.png) center center no-repeat
 
-          display: inline-block
-          width: 17px
-          height: 17px
-          background: #ebebeb
-          border: 1px solid #cfcfcf
-          position: relative
-          top: 5px
-          right: 6px
-        span.checked
-          background: #ebebeb url(//i1284.photobucket.com/albums/a574/meecrobe/check_zpsf8f08915.png) center center no-repeat
-
-
-
-
+#task-input
+  margin-top: 10px
+  margin-left: 10px
+  width: 97.5%
