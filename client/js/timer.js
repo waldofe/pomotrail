@@ -11,30 +11,50 @@ if (Meteor.isClient) {
     actualSeconds: function () {
       var realSeconds = (this.seconds % 60);
 
-      return (realSeconds < 9 ? realSeconds + '0' : realSeconds);
+      return (realSeconds < 10 ? realSeconds + '0' : realSeconds);
+    },
+
+    timer: function () {
+      return this.actualMinutes() + ':' + this.actualSeconds();
     }
   }
 
   Pomodoro = {
-    start: function () {
-      var totalSeconds, interval, timeLeft;
-      totalSeconds = 1500;
+    initialize: function () {
+      this.totalSeconds = 1500;
+      Clock.init(this.totalSeconds);
+      Session.set("pomodoroTimer", Clock.timer());
+    },
+
+    play: function () {
+      var that = this;
 
       timeLeft = function() {
-        var minutes, seconds;
+        if (that.totalSeconds > 0) {
+          that.totalSeconds--;
 
-        if (totalSeconds > 0) {
-          totalSeconds--;
+          Clock.init(that.totalSeconds);
 
-          Clock.init(totalSeconds);
-
-          Session.set("pomodoroTimer", Clock.actualMinutes() + ':' + Clock.actualSeconds());
+          Session.set("pomodoroTimer", Clock.timer());
         } else {
-          return Meteor.clearInterval(interval);
+          return Meteor.clearInterval(this.interval);
         }
       }
 
-      interval = Meteor.setInterval(timeLeft, 1000);
+      this.interval = Meteor.setInterval(timeLeft, 1000);
+
+      return true;
+    },
+
+    pause: function () {
+      Meteor.clearInterval(this.interval);
+      Session.set("pomodoroTimer", Clock.timer());
+
+      return true;
+    },
+
+    reset: function () {
+      this.initialize();
     }
-  };
+  }
 }
