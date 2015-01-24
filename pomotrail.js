@@ -1,7 +1,7 @@
-if (Meteor.isClient) {
-  Pomodoro.start();
+Members = new Meteor.Collection('members');
+Tasks = new Meteor.Collection('tasks');
 
-  // This code only runs on the client
+if (Meteor.isClient) {
   Template.body.helpers({
     tasks: function () {
       if (Session.get("hideCompleted")) {
@@ -21,7 +21,9 @@ if (Meteor.isClient) {
       return Tasks.find({checked: {$ne: true}}).count();
     },
 
-    time: function () {
+    timer: function () {
+      Pomodoro.initialize();
+
       return Session.get('pomodoroTimer');
     }
   });

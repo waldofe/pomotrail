@@ -3,7 +3,7 @@
 $red: #dd5555
 $gray: #7d7d7d
 $alt: #882222
-$classes: home gallery message music search settings location
+$classes: home gallery message music task settings location
 $i: 0
 
 =bg-positions
@@ -334,7 +334,7 @@ body
         float: left
         margin-right: 20px
 
-      h3
+      h4
         color: $red
         margin: 20px 0 8px 0
 
@@ -343,75 +343,66 @@ body
         margin: 0 0 5px 0
 
       .controls
+        margin-top: 4%
+
         button
           width: 30px
           height: 30px
           border-radius: 2px
-          background: #cbcbcb url(//i1284.photobucket.com/albums/a574/meecrobe/player-btn_zps4004039f.png) center center no-repeat
+          // background: #cbcbcb url(//i1284.photobucket.com/albums/a574/meecrobe/player-btn_zps4004039f.png) center center no-repeat
           border: none
-          float: left
           display: inline-block
           outline: none
           margin-right: 0
-          margin-left: 10px
-
           position: relative
+          bottom: 14px;
 
           &:hover
             background-color: $red
 
-        .next
-          left: 40px
-          background-position: center -46px
+          &:active
+            background-color: $alt
 
         .prev
           left: 20px
           background-position: center 10px
 
         .play
-          left: 30px
-          background-color: $red
+          left: 15px
+          bottom: 22px
+
+        .reset
+          left: 25px
+          bottom: 22px
+          background-position: center -46px
 
         .popup
           color: #fff
           border-radius: 2px
           background: $red
-          font-size: 30px
+          font-size: 28px
           padding: 3px 5px
-          position: fixed
-          bottom: 5px
-          left: 0%;
-          margin-left: 20px;
-
+          position: relative
           display: inline-block
-
-          &:after
-            content: ""
-            display: block
-            position: absolute
-            width: 0
-            height: 0
-            border-style: solid
-            border-width: 6px 3px 0px 3px
-            border-color: $red transparent transparent transparent
-            left: 13px
+          bottom: 15px;
 
         .progress
-          width: 600px
-          height: 6px
+          width: 170px
+          height: 4px
           border-radius: 2px
           background: #cbcbcb
           float: left
-          margin-top: 48px
+          margin-top: 25px
           overflow: hidden
 
           &:after
             content: ""
             display: block
-            width: 2%
-            height: 7px
+            width: 50%
+            height: 4px
             background: $red
             border-radius: 2px
+
 
     .task
       width: 850px
