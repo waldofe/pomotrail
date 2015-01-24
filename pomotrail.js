@@ -2,6 +2,8 @@ Members = new Meteor.Collection('members');
 Tasks = new Meteor.Collection('tasks');
 
 if (Meteor.isClient) {
+  Pomodoro.initialize();
+
   Template.body.helpers({
     tasks: function () {
       if (Session.get("hideCompleted")) {
@@ -22,8 +24,6 @@ if (Meteor.isClient) {
     },
 
     timer: function () {
-      Pomodoro.initialize();
-
       return Session.get('pomodoroTimer');
     }
   });
