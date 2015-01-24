@@ -1,11 +1,6 @@
-/**
-* Models
-*/
-Members = new Meteor.Collection('members');
-Tasks = new Meteor.Collection('tasks');
-//
-
 if (Meteor.isClient) {
+  Timer.initialize();
+
   // This code only runs on the client
   Template.body.helpers({
     tasks: function () {
@@ -24,6 +19,10 @@ if (Meteor.isClient) {
 
     incompleteCount: function () {
       return Tasks.find({checked: {$ne: true}}).count();
+    },
+
+    time: function () {
+      return Session.get('time');
     }
   });
 
@@ -51,8 +50,6 @@ if (Meteor.isClient) {
 
   Template.task.events({
     "click .toggle-checked": function () {
-      console.log(this._id);
-      // Set the checked property to the opposite of its current value
       Tasks.update(this._id, {$set: {checked: ! this.checked}});
     },
 
