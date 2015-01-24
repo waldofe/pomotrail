@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Timer.initialize();
+  Pomodoro.start();
 
   // This code only runs on the client
   Template.body.helpers({
@@ -22,7 +22,7 @@ if (Meteor.isClient) {
     },
 
     time: function () {
-      return Session.get('time');
+      return Session.get('pomodoroTimer');
     }
   });
 
