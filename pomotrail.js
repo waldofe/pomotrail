@@ -16,7 +16,7 @@ if (Meteor.isClient) {
     },
 
     players: function () {
-      return Tasks.find({status: 'working'});
+      return Tasks.find({status: { $in: ['working', 'paused'] }});
     },
 
     hideCompleted: function () {
