@@ -316,7 +316,25 @@ body
         color: $gray
         padding: 0
 
-    .audio-player
+    .micro-control
+      width: 30px;
+      float: left;
+
+      button
+        width: 20px
+        height: 20px
+        border-radius: 2px
+        border: none
+        display: inline-block
+        outline: none
+        margin-right: 0
+        position: relative
+        // bottom: 14px;
+
+        &:hover
+          background-color: $gray
+
+    .pomodoro-player
       width: 850px
       height: 120px
       @extend %section

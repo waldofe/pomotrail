@@ -32,24 +32,8 @@
         </ul>
       </nav>
     </section>
-    <section class="audio-player">
-      <div class="cover">
-      </div>
-      <h4>Conquistar o mundo com a mão nas costas</h4>
 
-
-      <div class="controls">
-        <span class="popup">{{timer}}</span>
-
-        <button class="{{playerMode}}">
-          <i class="fa fa-{{playerMode}}"></i>
-        </button>
-
-        <button class="reset">
-          <i class="fa fa-stop"></i>
-        </button>
-      </div>
-    </section>
+    {{ongoingTask}}
 
     <section class="task">
       <form class="new-task">
@@ -76,8 +60,15 @@
       {{title}}
     </span>
 
+
     <div class="pull-right">
       <span class="survey-progress">
+        <div class='micro-control'>
+          <button class="play">
+            <i class="fa fa-play"></i>
+          </button>
+        </div>
+
         <span class="survey-progress-labels">
           <span class="survey-progress-label">
             Pending
@@ -98,5 +89,23 @@
   </li>
 </template>
 
-<template name="time">
+<template name="ongoingTask">
+  <section class="pomodoro-player">
+    <div class="cover">
+    </div>
+    <h4>Conquistar o mundo com a mão nas costas</h4>
+
+    <div class="controls">
+      <span class="popup">{{timer}}</span>
+
+      <button class="{{playerMode}}">
+        <i class="fa fa-{{playerMode}}"></i>
+      </button>
+
+      <button class="reset">
+        <i class="fa fa-stop"></i>
+      </button>
+    </div>
+  </section>
 </template>
+
