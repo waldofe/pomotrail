@@ -124,7 +124,6 @@ body {
 
   .survey-end-date {
     display: inline-block;
-    width: 100px;
     white-space: nowrap;
 
     overflow: hidden;
@@ -330,4 +329,8 @@ li.checked .survey-name {
   position: relative;
   margin-right: 5px;
   bottom: 6px;
+}
+
+.task-options {
+
 }

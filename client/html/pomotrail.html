@@ -33,7 +33,23 @@
       </nav>
     </section>
 
-    {{ongoingTask}}
+    <section class="pomodoro-player">
+      <div class="cover">
+      </div>
+      <h4>Conquistar o mundo com a mão nas costas</h4>
+
+      <div class="controls">
+        <span class="popup">{{timer}}</span>
+
+        <button class="{{playerStatus}}">
+          <i class="fa fa-{{playerStatus}}"></i>
+        </button>
+
+        <button class="reset">
+          <i class="fa fa-stop"></i>
+        </button>
+      </div>
+    </section>
 
     <section class="task">
       <form class="new-task">
@@ -60,52 +76,37 @@
       {{title}}
     </span>
 
-
     <div class="pull-right">
-      <span class="survey-progress">
-        <div class='micro-control'>
-          <button class="play">
-            <i class="fa fa-play"></i>
-          </button>
-        </div>
+      <div class="task-options">
+        <span class="survey-progress">
+          <div class='micro-control'>
+            <button class="play">
+              <i class="fa fa-play"></i>
+            </button>
+          </div>
 
-        <span class="survey-progress-labels">
-          <span class="survey-progress-label">
-            Pending
-          </span>
+          <span class="survey-progress-labels">
+            <span class="survey-progress-label">
+              Pending
+            </span>
 
-          <span class="survey-completes">
-            0 / 0
+            <span class="survey-completes">
+              0 / 0
+            </span>
           </span>
         </span>
-      </span>
 
-       <span class="survey-end-date ended">
-        {{createdAt}}
-      </span>
+         <span class="survey-end-date ended">
+          {{prettyCreatedAt}}
+        </span>
 
-      <button class="delete">&times;</button>
+        <button class="delete">&times;</button>
+      </div>
     </div>
   </li>
 </template>
 
-<template name="ongoingTask">
-  <section class="pomodoro-player">
-    <div class="cover">
-    </div>
-    <h4>Conquistar o mundo com a mão nas costas</h4>
+<!-- <template name="ongoingTask">
 
-    <div class="controls">
-      <span class="popup">{{timer}}</span>
-
-      <button class="{{playerMode}}">
-        <i class="fa fa-{{playerMode}}"></i>
-      </button>
-
-      <button class="reset">
-        <i class="fa fa-stop"></i>
-      </button>
-    </div>
-  </section>
-</template>
+</template> -->
 

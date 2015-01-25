@@ -27,6 +27,8 @@ if (Meteor.isClient) {
     },
 
     play: function () {
+      Session.set('playerStatus', 'pause');
+
       var that = this;
 
       timeLeft = function() {
@@ -47,6 +49,7 @@ if (Meteor.isClient) {
     },
 
     pause: function () {
+      Session.set('playerStatus', 'play');
       Meteor.clearInterval(this.interval);
       Session.set("pomodoroTimer", Clock.timer());
 

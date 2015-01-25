@@ -25,6 +25,10 @@ if (Meteor.isClient) {
 
     timer: function () {
       return Session.get('pomodoroTimer');
+    },
+
+    ongoingTask: function () {
+
     }
   });
 
@@ -34,18 +38,15 @@ if (Meteor.isClient) {
     },
 
     "submit .new-task": function (event) {
-      // This function is called when the new task form is submitted
-
       var text = event.target.text.value;
 
       Tasks.insert({
         title: text,
-        createdAt: new Date() // current time
+        createdAt: new Date()
       });
 
       event.target.text.value = "";
 
-      // Prevent default form submit
       return false;
     }
   });
@@ -57,6 +58,18 @@ if (Meteor.isClient) {
 
     "click .delete": function () {
       Tasks.remove(this._id);
+    },
+
+    "click .micro-control .play": function () {
+      Pomodoro.play();
+
+      Tasks.update(this._id, { $set: {startedAt: new Date() }});
+    }
+  });
+
+  Template.task.helpers({
+    prettyCreatedAt: function () {
+      return moment(this.createdAt).format('DD/MM/YYYY, HH:mm:ss');
     }
   });
 }
