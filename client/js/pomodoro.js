@@ -11,7 +11,7 @@ if (Meteor.isClient) {
     actualSeconds: function () {
       var realSeconds = (this.seconds % 60);
 
-      return (realSeconds < 10 ? realSeconds + '0' : realSeconds);
+      return (realSeconds < 10 ? '0' + realSeconds : realSeconds);
     },
 
     timer: function () {
@@ -28,8 +28,14 @@ if (Meteor.isClient) {
       Session.set("pomodoroTimer", Clock.timer());
     },
 
+    ongoing: function () {
+      return Session.get('playerStatus') == 'pause'
+    },
+
     play: function () {
-      this.initialize();
+      if( this.ongoing() ) { this.initialize(); }
+
+      Meteor.clearInterval(this.interval);
 
       Session.set('playerStatus', 'pause');
 
