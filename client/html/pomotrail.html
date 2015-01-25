@@ -19,7 +19,7 @@
     </section>
   </aside>
   <main>
-    <section class="menu">
+    <!-- <section class="menu">
       <nav>
         <ul>
           <li><a href="#"><i class="i-home"></i>Home</a></li>
@@ -31,28 +31,11 @@
           <li><a href="#"><i class="i-location"></i>Location</a></li>
         </ul>
       </nav>
-    </section>
+    </section> -->
 
-    <section class="pomodoro-player">
-      <div class="cover">
-      </div>
-
-      {{#each ongoingTasks}}
-        {{> ongoingTask}}
-      {{/each}}
-
-      <div class="controls">
-        <span class="popup">{{timer}}</span>
-
-        <button class="{{playerStatus}}">
-          <i class="fa fa-{{playerStatus}}"></i>
-        </button>
-
-        <button class="reset">
-          <i class="fa fa-stop"></i>
-        </button>
-      </div>
-    </section>
+    {{#each players}}
+      {{> player}}
+    {{/each}}
 
     <section class="task">
       <form class="new-task">
@@ -90,7 +73,7 @@
 
           <span class="survey-progress-labels">
             <span class="survey-progress-label">
-              Pending
+              {{status}}
             </span>
 
             <span class="survey-completes">
@@ -109,7 +92,24 @@
   </li>
 </template>
 
-<template name="ongoingTask">
-  <h4>{{title}}</h4>
+<template name="player">
+  <section class="pomodoro-player">
+    <div class="cover">
+    </div>
+
+    <h4>{{title}}</h4>
+
+    <div class="controls">
+      <span class="popup">{{timer}}</span>
+
+      <button class="{{status}}">
+        <i class="fa fa-{{status}}"></i>
+      </button>
+
+      <button class="reset">
+        <i class="fa fa-stop"></i>
+      </button>
+    </div>
+  </section>
 </template>
 
