@@ -15,6 +15,10 @@ if (Meteor.isClient) {
       }
     },
 
+    ongoingTasks: function () {
+      return Tasks.find({status: 'working'});
+    },
+
     hideCompleted: function () {
       return Session.get("hideCompleted");
     },
@@ -25,10 +29,6 @@ if (Meteor.isClient) {
 
     timer: function () {
       return Session.get('pomodoroTimer');
-    },
-
-    ongoingTask: function () {
-
     }
   });
 
@@ -61,9 +61,21 @@ if (Meteor.isClient) {
     },
 
     "click .micro-control .play": function () {
+      Pomodoro.reset();
       Pomodoro.play();
 
-      Tasks.update(this._id, { $set: {startedAt: new Date() }});
+      Tasks.update(Session.get('lastPlayedTask'), {
+        $set: { status: 'pending' }
+      });
+
+      Session.set('lastPlayedTask', this._id);
+
+      Tasks.update(this._id, {
+        $set: {
+          startedAt: new Date(),
+          status:    'working'
+        }
+      });
     }
   });
 

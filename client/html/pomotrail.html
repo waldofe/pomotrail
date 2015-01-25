@@ -36,7 +36,10 @@
     <section class="pomodoro-player">
       <div class="cover">
       </div>
-      <h4>Conquistar o mundo com a mão nas costas</h4>
+
+      {{#each ongoingTasks}}
+        {{> ongoingTask}}
+      {{/each}}
 
       <div class="controls">
         <span class="popup">{{timer}}</span>
@@ -106,7 +109,7 @@
   </li>
 </template>
 
-<!-- <template name="ongoingTask">
-
-</template> -->
+<template name="ongoingTask">
+  <h4>{{title}}</h4>
+</template>
 
