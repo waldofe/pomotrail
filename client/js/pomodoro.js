@@ -21,12 +21,16 @@ if (Meteor.isClient) {
 
   Pomodoro = {
     initialize: function () {
+      Meteor.clearInterval(this.interval);
+
       this.totalSeconds = 1500;
       Clock.init(this.totalSeconds);
       Session.set("pomodoroTimer", Clock.timer());
     },
 
     play: function () {
+      this.initialize();
+
       Session.set('playerStatus', 'pause');
 
       var that = this;
@@ -54,10 +58,6 @@ if (Meteor.isClient) {
       Session.set("pomodoroTimer", Clock.timer());
 
       return true;
-    },
-
-    reset: function () {
-      this.initialize();
     }
   }
 }

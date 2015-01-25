@@ -17,8 +17,7 @@ if (Meteor.isClient) {
     },
 
     "click .pomodoro-player .controls .reset": function (event) {
-      Pomodoro.reset();
-      Pomodoro.pause();
+      Pomodoro.initialize();
       Session.set('playerStatus', 'play');
     }
   });

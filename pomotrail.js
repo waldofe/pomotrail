@@ -61,12 +61,9 @@ if (Meteor.isClient) {
     },
 
     "click .micro-control .play": function () {
-      Pomodoro.reset();
       Pomodoro.play();
 
-      Tasks.update(Session.get('lastPlayedTask'), {
-        $set: { status: 'pending' }
-      });
+      Tasks.update({status: 'working'}, {$set: {status: 'pending'}}, { multi: true });
 
       Session.set('lastPlayedTask', this._id);
 
