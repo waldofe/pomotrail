@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   StatusTimes = {
-    work:       1500,
+    work:       5,
     short_rest: 300
   }
 
@@ -54,8 +54,28 @@ if (Meteor.isClient) {
       return (Session.get('playerStatus') == 'pause' && !this.resting());
     },
 
+    sendNotification: function(title, text) {
+      if (!Notification) return false;
+
+      var notification = new Notification(title, {
+        body: text,
+        icon: 'http://cdn3.iconfinder.com/data/icons/veggies/128/tomato.png'
+      })
+
+      // notification.onclick = function() {
+      // };
+
+      return true;
+    },
+
+    requestNotificationPermission: function() {
+      if (Notification.permission !== "granted")
+        Notification.requestPermission();
+    },
+
     playRest: function () {
       Clock.alarm();
+      this.sendNotification('Pomodoro terminado...', 'Começando descanso!');
 
       Session.set('pomodoroStatus', 'resting');
 
@@ -86,11 +106,12 @@ if (Meteor.isClient) {
           Session.set("pomodoroTimer", Clock.timer());
         } else {
 
-          console.log(that.ongoing());
           if( that.ongoing() ) {
             that.playRest();
           } else {
             Clock.alarm();
+
+            that.sendNotification('Descanso terminado...', 'Hora de voltar a trabalhar!');
 
             // THIS MUST GO OUT OF HERE AS
             Tasks.update(Session.get('lastPlayedTask'), {

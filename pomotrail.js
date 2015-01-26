@@ -3,6 +3,7 @@ Tasks = new Meteor.Collection('tasks');
 
 if (Meteor.isClient) {
   Pomodoro.initialize();
+  Pomodoro.requestNotificationPermission();
 
   Meteor.autorun(function () {
     var title = 'pomotrail'
