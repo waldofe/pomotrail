@@ -1,8 +1,8 @@
 if (Meteor.isClient) {
   StatusTimes = {
-    work:       5,
+    work:       1500,
     short_rest: 300,
-    long_rest: 900,
+    long_rest:  900,
   }
 
   Clock = {
@@ -63,6 +63,7 @@ if (Meteor.isClient) {
         icon: 'http://cdn3.iconfinder.com/data/icons/veggies/128/tomato.png'
       })
 
+      // TODO: Open pomotrail tab
       // notification.onclick = function() {
       // };
 
