@@ -28,7 +28,12 @@ if (Meteor.isClient) {
     },
 
     players: function () {
-      return Tasks.find({status: { $in: ['working', 'paused', 'resting'] }});
+      if( Meteor.user() ) {
+        return Tasks.find({
+          status: { $in: ['working', 'paused', 'resting'] },
+          userId: Meteor.user()._id
+        });
+      }
     },
 
     hideCompleted: function () {
