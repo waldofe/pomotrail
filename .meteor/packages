@@ -6,10 +6,11 @@
 
 meteor-platform
 insecure
-accounts-ui
 accounts-password
 stevezhu:sass
 less
 autopublish
 amplify
 mrt:moment
+accounts-ui-unstyled
+accounts-ui

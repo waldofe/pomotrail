@@ -4,14 +4,26 @@ Tasks = new Meteor.Collection('tasks');
 if (Meteor.isClient) {
   Pomodoro.initialize();
 
+  Meteor.autorun(function () {
+    var title = 'pomotrail'
+
+    if(Pomodoro.status()) {
+      title = Session.get('pomodoroTimer') + ' - ' + Session.get('pomodoroStatus');
+    }
+
+    document.title = title;
+  });
+
   Template.body.helpers({
+    loggedInUser: function () {
+      return Meteor.user();
+    },
+
     tasks: function () {
-      if (Session.get("hideCompleted")) {
-        // If hide completed is checked, filter tasks
-        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
-      } else {
-        // Otherwise, return all of the tasks
-        return Tasks.find({}, {sort: {createdAt: -1}});
+      if( Meteor.user() ) {
+        return Tasks.find(
+          { userId: Meteor.user()._id }, { sort: {createdAt: -1 }
+        });
       }
     },
 
@@ -41,7 +53,8 @@ if (Meteor.isClient) {
         createdAt:            new Date(),
         status:               'pending',
         interruptedPomodoros: 0,
-        completedPomodoros:   0
+        completedPomodoros:   0,
+        userId:               Meteor.user()._id
       });
 
       event.target.text.value = "";

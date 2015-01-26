@@ -36,6 +36,10 @@ if (Meteor.isClient) {
       Session.set("pomodoroTimer", Clock.timer());
     },
 
+    status: function () {
+      return Session.get('pomodoroStatus');
+    },
+
     resting: function () {
       return Session.get('pomodoroStatus') == 'resting';
     },
@@ -71,6 +75,7 @@ if (Meteor.isClient) {
 
           Clock.init(that.totalSeconds);
 
+          Session.set('pomodoroStatus', 'working');
           Session.set("pomodoroTimer", Clock.timer());
         } else {
 
