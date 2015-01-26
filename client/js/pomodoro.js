@@ -114,8 +114,8 @@ if (Meteor.isClient) {
         } else {
 
           if( that.ongoing() ) {
-            that.playRest();
             Session.set('pomodoroCount', Session.get('pomodoroCount')+1);
+            that.playRest();
           } else {
             Clock.alarm();
 
