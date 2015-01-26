@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   StatusTimes = {
-    work:       5,
-    short_rest: 2
+    work:       1500,
+    short_rest: 300
   }
 
   Clock = {
