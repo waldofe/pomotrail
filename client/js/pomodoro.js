@@ -21,6 +21,12 @@ if (Meteor.isClient) {
 
     timer: function () {
       return this.actualMinutes() + ':' + this.actualSeconds();
+    },
+
+    alarm: function () {
+      var s = new buzz.sound('/sounds/trim.mp3');
+
+      s.play();
     }
   }
 
@@ -49,6 +55,8 @@ if (Meteor.isClient) {
     },
 
     playRest: function () {
+      Clock.alarm();
+
       Session.set('pomodoroStatus', 'resting');
 
       Tasks.update(Session.get('lastPlayedTask'), {
@@ -75,13 +83,16 @@ if (Meteor.isClient) {
 
           Clock.init(that.totalSeconds);
 
-          Session.set('pomodoroStatus', 'working');
           Session.set("pomodoroTimer", Clock.timer());
         } else {
 
+          console.log(that.ongoing());
           if( that.ongoing() ) {
             that.playRest();
           } else {
+            Clock.alarm();
+
+            // THIS MUST GO OUT OF HERE AS
             Tasks.update(Session.get('lastPlayedTask'), {
               $set: { status: 'paused' }
             });

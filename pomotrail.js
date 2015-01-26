@@ -8,7 +8,7 @@ if (Meteor.isClient) {
     var title = 'pomotrail'
 
     if(Pomodoro.status()) {
-      title = Session.get('pomodoroTimer') + ' - ' + Session.get('pomodoroStatus');
+      title = Session.get('pomodoroTimer');
     }
 
     document.title = title;
