@@ -1,7 +1,8 @@
 if (Meteor.isClient) {
   StatusTimes = {
     work:       5,
-    short_rest: 300
+    short_rest: 300,
+    long_rest: 900,
   }
 
   Clock = {
@@ -84,7 +85,13 @@ if (Meteor.isClient) {
         $inc: { completedPomodoros: 1 }
       });
 
-      this.initialize('short_rest');
+      if (Session.get('pomodoroCount') % 4 === 0) {
+        this.initialize('long_rest');
+        Session.set('pomodoroCount', 0);
+      } else {
+        this.initialize('short_rest');
+      }
+
       this.play();
     },
 
@@ -108,6 +115,7 @@ if (Meteor.isClient) {
 
           if( that.ongoing() ) {
             that.playRest();
+            Session.set('pomodoroCount', Session.get('pomodoroCount')+1);
           } else {
             Clock.alarm();
 

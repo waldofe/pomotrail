@@ -4,6 +4,7 @@ Tasks = new Meteor.Collection('tasks');
 if (Meteor.isClient) {
   Pomodoro.initialize();
   Pomodoro.requestNotificationPermission();
+  Session.set('pomodoroCount', 0);
 
   Meteor.autorun(function () {
     var title = 'pomotrail'
