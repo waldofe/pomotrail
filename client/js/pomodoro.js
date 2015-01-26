@@ -1,4 +1,9 @@
 if (Meteor.isClient) {
+  StatusTimes = {
+    work:       1500,
+    short_rest: 300
+  }
+
   Clock = {
     init: function (seconds) {
       this.seconds = seconds;
@@ -20,16 +25,29 @@ if (Meteor.isClient) {
   }
 
   Pomodoro = {
-    initialize: function () {
+    initialize: function (type) {
+      type = type || 'work';
+
       Meteor.clearInterval(this.interval);
 
-      this.totalSeconds = 1500;
+      this.totalSeconds = StatusTimes[type];
+
       Clock.init(this.totalSeconds);
       Session.set("pomodoroTimer", Clock.timer());
     },
 
+    resting: function () {
+      return Session.get('pomodoroStatus') == 'resting';
+    },
+
     ongoing: function () {
-      return Session.get('playerStatus') == 'pause'
+      return (Session.get('playerStatus') == 'pause' && !this.resting());
+    },
+
+    playRest: function () {
+      Session.set('pomodoroStatus', 'resting');
+      this.initialize('short_rest');
+      this.play();
     },
 
     play: function () {
@@ -49,6 +67,8 @@ if (Meteor.isClient) {
 
           Session.set("pomodoroTimer", Clock.timer());
         } else {
+          that.ongoing() ? that.playRest() : that.initialize();
+
           return Meteor.clearInterval(this.interval);
         }
       }
