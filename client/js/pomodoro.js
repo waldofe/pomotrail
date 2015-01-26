@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   StatusTimes = {
-    work:       5,
+    work:       1500,
     short_rest: 300
   }
 
@@ -61,9 +61,6 @@ if (Meteor.isClient) {
         body: text,
         icon: 'http://cdn3.iconfinder.com/data/icons/veggies/128/tomato.png'
       })
-
-      // notification.onclick = function() {
-      // };
 
       return true;
     },
