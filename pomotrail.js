@@ -6,10 +6,10 @@ if (Meteor.isClient) {
 
   Meteor.autorun(function () {
     var title = 'pomotrail'
+    var timer = Session.get('pomodoroTimer');
 
-    if(Pomodoro.status()) {
-      title = Session.get('pomodoroTimer');
-    }
+    if(timer)
+      title = timer;
 
     document.title = title;
   });
