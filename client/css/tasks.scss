@@ -5,6 +5,7 @@
   font-family: 'entypo', sans-serif;
 }
 
+$red: #dd5555;
 $primary-text-color: #000;
 $secondary-text-color: #A1A1A4;
 $theme-color: #8DC63F;
@@ -55,6 +56,14 @@ body {
 
 .survey-item {
   @extend %card-style;
+
+  &.completed {
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 10;
+    }
+  }
 }
 
 .survey-name {
@@ -108,7 +117,7 @@ body {
   .survey-end-date,
   .survey-name,
   .survey-stage {
-    margin: 0 10px;
+    margin: 0 10px 0px 1px;
   }
 
   .survey-country {
@@ -146,8 +155,12 @@ body {
   color: transparent;
   line-height: 16px;
 
-  &.active {
+  &.interrupted {
     background: $secondary-text-color;
+  }
+
+  &.completed {
+    background: $red;
   }
 }
 
@@ -185,6 +198,8 @@ body {
       margin: 10px auto;
     }
   }
+
+
 
   .survey-name {
     display: block;
@@ -321,7 +336,6 @@ li.checked .survey-name {
 
 .delete {
   color: $secondary-text-color;
-  float: left;
   font-weight: bold;
   background: none;
   font-size: 2.5em;

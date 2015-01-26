@@ -1,10 +1,15 @@
 if (Meteor.isClient) {
   Template.task.events({
     "click .toggle-checked": function () {
-      Tasks.update(this._id, {$set: {checked: ! this.checked}});
+      Tasks.update(this._id, {
+        $set: {
+          checked: ! this.checked,
+          status:  this.checked ? 'pending' : 'completed'
+        }
+      });
     },
 
-    "click .delete": function () {
+    "click .remove": function () {
       Tasks.remove(this._id);
     },
 

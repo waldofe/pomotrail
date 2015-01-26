@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   StatusTimes = {
-    work:       1500,
-    short_rest: 300
+    work:       5,
+    short_rest: 2
   }
 
   Clock = {
@@ -46,6 +46,12 @@ if (Meteor.isClient) {
 
     playRest: function () {
       Session.set('pomodoroStatus', 'resting');
+
+      Tasks.update(Session.get('lastPlayedTask'), {
+        $set: { status: 'resting' },
+        $inc: { completedPomodoros: 1 }
+      });
+
       this.initialize('short_rest');
       this.play();
     },
@@ -67,7 +73,18 @@ if (Meteor.isClient) {
 
           Session.set("pomodoroTimer", Clock.timer());
         } else {
-          that.ongoing() ? that.playRest() : that.initialize();
+
+          if( that.ongoing() ) {
+            that.playRest();
+          } else {
+            Tasks.update(Session.get('lastPlayedTask'), {
+              $set: { status: 'paused' }
+            });
+
+            Session.set('playerStatus', 'play');
+            Session.set('pomodoroStatus', 'paused');
+            that.initialize();
+          }
 
           return Meteor.clearInterval(this.interval);
         }

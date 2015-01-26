@@ -55,10 +55,10 @@
 </body>
 
 <template name="task">
-  <li class="survey-item {{#if checked}}checked{{/if}}">
+  <li class="survey-item {{#if checked}}completed{{/if}}">
     <input type="checkbox" checked="{{#if checked}}checked{{/if}}" class="survey-checkbox toggle-checked">
 
-    <span class="survey-name">
+    <span class="survey-end-date">
       {{title}}
     </span>
 
@@ -66,8 +66,13 @@
       <div class="task-options">
         <span class="survey-progress">
           <div class='micro-control'>
+            <!-- <button class="delete">&times;</button> -->
             <button class="play">
               <i class="fa fa-play"></i>
+            </button>
+
+            <button class="remove">
+              <i class="fa fa-remove"></i>
             </button>
           </div>
 
@@ -77,7 +82,17 @@
             </span>
 
             <span class="survey-completes">
-              0 / 0
+              {{completedPomodoros}}
+
+              <span class="survey-stage">
+                <span class="stage completed"></span>
+              </span>
+
+              {{interruptedPomodoros}}
+
+              <span class="survey-stage">
+                <span class="stage interrupted"></span>
+              </span>
             </span>
           </span>
         </span>
@@ -85,8 +100,6 @@
          <span class="survey-end-date ended">
           {{prettyCreatedAt}}
         </span>
-
-        <button class="delete">&times;</button>
       </div>
     </div>
   </li>

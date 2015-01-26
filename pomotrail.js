@@ -16,7 +16,7 @@ if (Meteor.isClient) {
     },
 
     players: function () {
-      return Tasks.find({status: { $in: ['working', 'paused'] }});
+      return Tasks.find({status: { $in: ['working', 'paused', 'resting'] }});
     },
 
     hideCompleted: function () {
@@ -37,9 +37,11 @@ if (Meteor.isClient) {
       var text = event.target.text.value;
 
       Tasks.insert({
-        title: text,
-        createdAt: new Date(),
-        status: 'pending'
+        title:                text,
+        createdAt:            new Date(),
+        status:               'pending',
+        interruptedPomodoros: 0,
+        completedPomodoros:   0
       });
 
       event.target.text.value = "";

@@ -33,7 +33,8 @@ if (Meteor.isClient) {
 
     "click .pomodoro-player .controls .pause": function (event) {
       Tasks.update(Session.get('lastPlayedTask'), {
-        $set: { status: 'paused' }
+        $set: { status: 'paused' },
+        $inc: { interruptedPomodoros: 1 }
       });
 
       Pomodoro.pause();
@@ -43,7 +44,8 @@ if (Meteor.isClient) {
       Pomodoro.initialize();
 
       Tasks.update(Session.get('lastPlayedTask'), {
-        $set: { status: 'pending' }
+        $set: { status: 'pending' },
+        $inc: { interruptedPomodoros: 1 }
       });
 
       Session.set('playerStatus', 'play');
