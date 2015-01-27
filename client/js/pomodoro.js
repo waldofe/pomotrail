@@ -60,7 +60,7 @@ if (Meteor.isClient) {
 
       var notification = new Notification(title, {
         body: text,
-        icon: 'http://cdn3.iconfinder.com/data/icons/veggies/128/tomato.png'
+        icon: '/images/icone.png'
       })
 
       // TODO: Open pomotrail tab
