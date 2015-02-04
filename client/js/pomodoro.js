@@ -60,7 +60,7 @@ if (Meteor.isClient) {
 
       var notification = new Notification(title, {
         body: text,
-        icon: '/images/icone.png'
+        icon: '/images/notification.jpg'
       })
 
       // TODO: Open pomotrail tab
@@ -77,7 +77,7 @@ if (Meteor.isClient) {
 
     playRest: function () {
       Clock.alarm();
-      this.sendNotification('Pomodoro terminado...', 'Começando descanso!');
+      this.sendNotification('Pomodoro finished', 'Starting rest time');
 
       Session.set('pomodoroStatus', 'resting');
 
@@ -120,7 +120,7 @@ if (Meteor.isClient) {
           } else {
             Clock.alarm();
 
-            that.sendNotification('Descanso terminado...', 'Hora de voltar a trabalhar!');
+            that.sendNotification('Rest time finished', 'Time to go back to work!');
 
             // THIS MUST GO OUT OF HERE AS
             Tasks.update(Session.get('lastPlayedTask'), {
