@@ -137,6 +137,7 @@ body {
   .survey-name,
   .survey-stage {
     margin: 0 10px 0px 1px;
+
   }
 
   .survey-country {
@@ -218,8 +219,6 @@ body {
     }
   }
 
-
-
   .survey-name {
     display: block;
     max-width: 80%;
@@ -291,7 +290,6 @@ body {
   .survey-completes {
     line-height: 21px;
     font-size: 13px;
-    vertical-align: middle;
   }
 
   .survey-stage {
@@ -318,6 +316,12 @@ body {
   vertical-align: middle;
   margin: 0 10px;
   color: $theme-color;
+}
+
+.survey-progress-labels {
+  .survey-completes {
+    float: right;
+  }
 }
 
 .survey-progress-bg {
@@ -362,4 +366,8 @@ li.checked .survey-name {
   position: relative;
   margin-right: 5px;
   bottom: 6px;
+}
+
+.task-options {
+  width: 270px;
 }
