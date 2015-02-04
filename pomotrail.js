@@ -31,8 +31,8 @@ if (Meteor.isClient) {
 
     players: function () {
       if( Meteor.user() ) {
-        return Tasks.find({
-          status: { $in: ['working'] },
+        return Tasks.find(Session.get('lastPlayedTask'), {
+          status: { $in: ['working', 'resting'] },
           userId: Meteor.user()._id
         });
       }
