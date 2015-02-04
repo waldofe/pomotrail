@@ -10,33 +10,48 @@
 <body>
   <header></header>
   <div class="wrapper">
-    <aside>
-      <section class="address">
-        <img src="//i1284.photobucket.com/albums/a574/meecrobe/location_zps1795527f.jpg" alt="Location">
-        <h3>Pomotrail</h3>
-        {{> loginButtons}}
-      </section>
-    </aside>
   <main>
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-
     {{#if loggedInUser }}
+      <aside>
+        <section class="address">
+          <img src="//i1284.photobucket.com/albums/a574/meecrobe/location_zps1795527f.jpg" alt="Location">
+
+          <button>{{> loginButtons}}</button>
+        </section>
+      </aside>
+
+      {{#each players}}
+        {{> player}}
+      {{/each}}
+
       <section class="task">
         <form class="new-task">
           <input type="text" name="text" id="task-input" placeholder="Type to add new tasks" />
         </form>
       </section>
+
+      <section class='task-manager'>
+        <ul class="surveys list">
+          {{#each tasks}}
+            {{> task}}
+          {{/each}}
+        </ul>
+      </section>
+    {{else}}
+      <section class="info-box">
+        <div class="hero">
+          <img src="/images/front-panel2.jpg" alt="Pomotrail">
+        </div>
+        <center>
+          <h3>Pomotrail</h3>
+
+          <p>The pomodoro tracker you waited for</p>
+
+          <button>{{> loginButtons}}</button>
+        </center>
+      </section>
     {{/if}}
 
-    <section class='task-manager'>
-      <ul class="surveys list">
-        {{#each tasks}}
-          {{> task}}
-        {{/each}}
-      </ul>
-    </section>
   </main>
 </div>
 
@@ -110,15 +125,19 @@
     <h4>{{title}}</h4>
 
     <div class="controls">
-      <span class="popup">{{timer}}</span>
+      <div class='timer'>
+        <span class="popup">{{timer}}</span>
+      </div>
 
-      <button class="{{status}}">
-        <i class="fa fa-{{status}}"></i>
-      </button>
+      <div class='options'>
+        <button class="{{status}}">
+          <i class="fa fa-{{status}}"></i>
+        </button>
 
-      <button class="reset">
-        <i class="fa fa-stop"></i>
-      </button>
+        <button class="reset">
+          <i class="fa fa-stop"></i>
+        </button>
+      </div>
     </div>
   </section>
 </template>

@@ -32,7 +32,7 @@ if (Meteor.isClient) {
     players: function () {
       if( Meteor.user() ) {
         return Tasks.find({
-          status: { $in: ['working', 'paused', 'resting'] },
+          status: { $in: ['working'] },
           userId: Meteor.user()._id
         });
       }
