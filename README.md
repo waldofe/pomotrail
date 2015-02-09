@@ -3,7 +3,7 @@ pomotrail
 
 ### A Meteor.js webapp to manage tasks and pomodoros.
 
-#### Visit [pomotrail.com](pomotrail.com)
+#### Visit [pomotrail.com](http://pomotrail.com)
 
 #### Introduction
 
