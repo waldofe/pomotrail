@@ -9,7 +9,6 @@ insecure
 accounts-password
 stevezhu:sass
 less
-autopublish
 amplify
 mrt:moment
 accounts-ui-unstyled
