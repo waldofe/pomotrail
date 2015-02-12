@@ -70,3 +70,13 @@ if (Meteor.isClient) {
     }
   });
 }
+if (Meteor.isServer) {
+  // Publish tasks to owner
+  Meteor.publish(null, function () {
+    if (! this.userId) {
+      return null;
+    } else {
+      return Tasks.find({userId: this.userId})
+    }
+  })
+}
